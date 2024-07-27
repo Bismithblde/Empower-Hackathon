@@ -1,6 +1,6 @@
 import React from 'react'
 import './ExpensesInput.css'
-export default function ExpensesInput() {
+export default function ExpensesInput( {budgetsArray} ) {
   return (
     <div className='expenses-input-container'>
     <form className='expenses-input-form'>
@@ -10,7 +10,9 @@ export default function ExpensesInput() {
             <div style={{display: "flex", flexDirection: "column", width: "30%"}}>
                 <label className='input-label'> Select a Budget</label>
                 <select className='expenses-dropdown'>
-                    <option>Test</option>
+                {budgetsArray.map((budget, index) => (
+                <option key={index} value={budget.name}>{budget.name}</option>
+              ))}
                 </select>
             </div>
 
