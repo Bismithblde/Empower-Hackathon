@@ -5,7 +5,7 @@ export default function BudgetInput( {addBudget}) {
   const [budgetValue, setBudgetValue] = useState(0)
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBudget({name: name, budgetValue: budgetValue})
+    addBudget({name: name, budgetValue: budgetValue, expenses: [], totalExpense: 0})
     console.log("Submitted")
   }
   return (
