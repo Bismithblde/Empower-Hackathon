@@ -60,8 +60,8 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
             <label className='input-label'>Amount</label>
             <input
               type='number'
-              placeholder='$5'
-              className='expenses-input '
+              placeholder='$7'
+              className='expenses-input pixelify-sans-normal'
               value={expenseValue}
               onChange={(e) => setExpenseValue(e.target.value)}
             />
@@ -71,12 +71,12 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
         <input
           type='text'
           placeholder='e.g. 7/27/2024: Coffee'
-          className='budget-input'
+          className='budget-input pixelify-sans-normal'
           value={expenseName}
           onChange={(e) => setExpenseName(e.target.value)}
         />
 
-        <button className='expenses-input-button' type='submit'>Submit</button>
+        <button className='expenses-input-button pixelify-sans-normal' type='submit'>Submit</button>
       </form>
     </div>
   );

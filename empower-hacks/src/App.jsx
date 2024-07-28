@@ -5,33 +5,17 @@ import './App.css'
 import BudgetInput from '../components/BudgetInput/BudgetInput'
 import ExpensesInput from '../components/ExpensesInput/ExpensesInput'
 import BudgetList from '../components/BudgetList/BudgetList'
-
+import BudgetTracker from './BudgetTracker'
+import { Route, Routes } from 'react-router-dom'
 function App() {
-  const [budgetsArray, setBudgetArray] = useState([])
-  
-  const addBudget = (budget) => {
-    setBudgetArray([...budgetsArray, budget])
-  }
 
-  const findAndSetBudgetArray = (budget) => {
-    const index = budgetsArray.findIndex(b => b.name === budget.name)
-    if (index !== -1) {
-      const updatedArray = [...budgetsArray]
-      updatedArray[index] = budget
-      setBudgetArray(updatedArray)
-      console.log(updatedArray)
-    }
-  }
   return (
-    <div className='main-container'>
-      <div className='forms-container'>
-        <BudgetInput addBudget={addBudget}/>
-        <ExpensesInput budgetsArray={budgetsArray} setBudgetArray={setBudgetArray}/>
-      </div>
-      <div className='budgetList-container'>
-        <BudgetList budgetArray={budgetsArray}/>
-      </div>
-    </div>
+    <>
+      <Routes>
+        <Route path='/budget' element={<BudgetTracker />}>
+        </Route>
+      </Routes>
+    </>
 
   )
 }

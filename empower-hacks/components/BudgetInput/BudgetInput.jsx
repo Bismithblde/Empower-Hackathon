@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import './BudgetInput.css'
-export default function BudgetInput( {addBudget}) {
+export default function BudgetInput( {addBudget, budgetArray}) {
   const [name, setName] = useState("");
   const [budgetValue, setBudgetValue] = useState(0)
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (budgetArray.find(b => b.name === name)) {
+      alert("You added a budget with the same name as another one.")
+      return;
+    }
     addBudget({name: name, budgetValue: budgetValue, expenses: [], totalExpense: 0})
     console.log("Submitted")
   }
