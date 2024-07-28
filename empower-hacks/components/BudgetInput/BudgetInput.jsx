@@ -12,12 +12,12 @@ export default function BudgetInput( {addBudget}) {
     
     <div className='budget-input-container'>
         <form className='budget-input-form' onSubmit={handleSubmit}>
-            <label className='title-label'>Create Budget</label>
-            <label className='input-label'>Budget Name</label>
-            <input type='text' placeholder='e.g. Groceries' className='budget-input' onChange={(e) => setName(e.target.value)}></input>
-            <label className='input-label '>Amount</label>
-            <input type='number' placeholder='$100' className='budget-input' onChange={(e) => setBudgetValue(e.target.value)}></input>
-            <button className='budget-input-button' type='submit'>Submit</button>
+            <label className='title-label pixelify-sans-normal' >Create Budget</label>
+            <label className='input-label pixelify-sans-normal'>Budget Name</label>
+            <input type='text' placeholder='e.g. Groceries' className='budget-input pixelify-sans-normal' onChange={(e) => setName(e.target.value)}></input>
+            <label className='input-label pixelify-sans-normal'>Amount</label>
+            <input type='number' placeholder='$100' className='budget-input pixelify-sans-normal' onChange={(e) => setBudgetValue(e.target.value)}></input>
+            <button className='budget-input-button pixelify-sans-normal' type='submit'>Submit</button>
         </form> 
     </div>
 

@@ -42,13 +42,13 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
   };
 
   return (
-    <div className='expenses-input-container'>
+    <div className='expenses-input-container pixelify-sans-normal'>
       <form className='expenses-input-form' onSubmit={handleSubmit}>
-        <label className='title-label'>Add a new expense</label>
+        <label className='title-label '>Add a new expense</label>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', flexDirection: 'column', width: '30%' }}>
             <label className='input-label'>Select a Budget</label>
-            <select className='expenses-dropdown' onChange={handleBudgetChange} value={selectedBudget.name}>
+            <select className='expenses-dropdown pixelify-sans-normal' onChange={handleBudgetChange} value={selectedBudget.name}>
               <option value=''>Select a budget</option>
               {budgetsArray.map((budget, index) => (
                 <option key={index} value={budget.name}>{budget.name}</option>
@@ -61,7 +61,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
             <input
               type='number'
               placeholder='$5'
-              className='expenses-input'
+              className='expenses-input '
               value={expenseValue}
               onChange={(e) => setExpenseValue(e.target.value)}
             />

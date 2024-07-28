@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const DoughnutChart = ({ percentage }) => {
   return (
-    <div style={{height: 100, width: 100}}>
+    <div style={{height: 200, width: 200, paddingBottom: 30}}>
             <CircularProgressbar
       value={percentage}
       styles={buildStyles({
