@@ -2,3 +2,6 @@
   display: flex;
   flex-direction: row;
 }
+.budgetList-container {
+  padding-left: 50px;
+}
