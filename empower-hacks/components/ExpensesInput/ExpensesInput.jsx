@@ -3,15 +3,19 @@ import './ExpensesInput.css';
 
 export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
   const [selectedBudget, setSelectedBudget] = useState({ name: '', expenses: [], totalExpense: 0 });
-  const [expenseValue, setExpenseValue] = useState(0);
+  const [expenseValue, setExpenseValue] = useState('');
   const [expenseName, setExpenseName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedExpenses = [...selectedBudget.expenses, { expenseName: expenseName, expenseValue: expenseValue }];
-    
-    const updatedTotalExpense = selectedBudget.totalExpense + expenseValue;
+    const updatedExpenses = [...selectedBudget.expenses, { expenseName: expenseName, expenseValue: Number(expenseValue) }];
+    const updatedTotalExpense = selectedBudget.totalExpense + Number(expenseValue);
+
+    if (updatedTotalExpense > selectedBudget.budgetValue) {
+      alert(`You have exceeded your maximum budget for ${selectedBudget.name}`);
+      return; 
+    }
 
     const updatedBudget = {
       ...selectedBudget,
@@ -24,11 +28,9 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
     );
 
     setBudgetArray(updatedArray);
-
     setSelectedBudget(updatedBudget);
-
     setExpenseName('');
-    setExpenseValue(0);
+    setExpenseValue(''); // clear
   };
 
   const handleBudgetChange = (e) => {
@@ -61,7 +63,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
               placeholder='$5'
               className='expenses-input'
               value={expenseValue}
-              onChange={(e) => setExpenseValue(Number(e.target.value))}
+              onChange={(e) => setExpenseValue(e.target.value)}
             />
           </div>
         </div>
