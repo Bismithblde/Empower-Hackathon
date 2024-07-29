@@ -71,7 +71,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
         <input
           type='text'
           placeholder='e.g. 7/27/2024: Coffee'
-          className='budget-input pixelify-sans-normal'
+          className='expenses-input pixelify-sans-normal'
           value={expenseName}
           onChange={(e) => setExpenseName(e.target.value)}
         />

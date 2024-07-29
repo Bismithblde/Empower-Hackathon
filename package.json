@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.5",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
     "d3": "^7.9.0",

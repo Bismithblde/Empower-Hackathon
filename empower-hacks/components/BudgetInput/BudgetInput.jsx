@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './BudgetInput.css'
+import { Button } from '@mui/material';
 export default function BudgetInput( {addBudget, budgetArray}) {
   const [name, setName] = useState("");
   const [budgetValue, setBudgetValue] = useState(0)
@@ -9,7 +10,7 @@ export default function BudgetInput( {addBudget, budgetArray}) {
       alert("You added a budget with the same name as another one.")
       return;
     }
-    addBudget({name: name, budgetValue: budgetValue, expenses: [], totalExpense: 0})
+    addBudget({name: name, id: budgetArray.length+1, budgetValue: budgetValue, expenses: [], totalExpense: 0})
     console.log("Submitted")
   }
   return (
@@ -22,6 +23,7 @@ export default function BudgetInput( {addBudget, budgetArray}) {
             <label className='input-label pixelify-sans-normal'>Amount</label>
             <input type='number' placeholder='$100' className='budget-input pixelify-sans-normal' onChange={(e) => setBudgetValue(e.target.value)}></input>
             <button className='budget-input-button pixelify-sans-normal' type='submit'>Submit</button>
+            
         </form> 
     </div>
 

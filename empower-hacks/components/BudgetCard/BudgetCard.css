@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 120%;
+    height: 100%;
+    width: 80%;
     justify-content: space-around;
+    background-color: #E7E5DF;
 }

@@ -12,7 +12,7 @@
     margin: 100px 50px;  
     border-radius: 10px;
     padding: 20px;
-    background-color: #f7e9fd; 
+    background-color: #E7E5DF;
     height: 300px;
 }
 
@@ -31,25 +31,39 @@
     padding-bottom: 10px;
     padding-top: 10px;
     font-size: 20px;
+    
 }
 .expenses-input {
     height: 40px;
     font-size: 25px;
     padding-left: 10px;
+    background-color: #D3D0CB;
+    border: solid;
+    border-width: 1px
+;
 }
 .expenses-input-button {
     margin-top: 30px;    
     height: 45px;
     width: 25%;
-    background-color: rgb(255, 216, 253);
+    background-color: #393E41;
     border-radius: 10px;
     border-width: 1px;
     transition: 0.3s;
+    color: #D3D0CB
 
 }
 .expenses-input-button:hover {
-    background-color: #e5a8ff;
+    background-color: #5f6264;
     color: white;
-    box-shadow: 5px 10px rgb(255, 216, 253);
+    box-shadow: 5px 10px #393E41;
     transform: translateY(-10px);
+}
+.expenses-dropdown {
+    background-color: #D3D0CB;
+
+}
+.expenses-input {
+    border: solid;
+    border-width: 1px
 }

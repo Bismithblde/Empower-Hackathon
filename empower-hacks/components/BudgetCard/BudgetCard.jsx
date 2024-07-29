@@ -1,6 +1,11 @@
 import React from 'react';
 import DoughnutChart from '../DoughnutChart/DoughnutChart';
 import './BudgetCard.css';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
+
+
 
 export default function BudgetCard({ budget }) {
   return (
@@ -15,6 +20,7 @@ export default function BudgetCard({ budget }) {
         Current Spending: ${budget.totalExpense}
       </h3>
       <DoughnutChart percentage={(budget.totalExpense / budget.budgetValue) * 100} />
+      <Link to={`/budget/${budget.id}`}> View Details</Link >
     </div>
   );
 }
