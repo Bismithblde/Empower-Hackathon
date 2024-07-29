@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ExpensesInput.css';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
   const [selectedBudget, setSelectedBudget] = useState({ name: '', expenses: [], totalExpense: 0 });
@@ -51,7 +52,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
             <select className='expenses-dropdown pixelify-sans-normal' onChange={handleBudgetChange} value={selectedBudget.name}>
               <option value=''>Select a budget</option>
               {budgetsArray.map((budget, index) => (
-                <option key={index} value={budget.name}>{budget.name}</option>
+                <option key={ uuidv4()} value={budget.name}>{budget.name}</option>
               ))}
             </select>
           </div>

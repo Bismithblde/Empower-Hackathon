@@ -38,7 +38,7 @@ function BudgetTracker() {
         <ExpensesInput budgetsArray={budgetsArray} setBudgetArray={setBudgetArray} />
       </div>
       <div className='budgetList-container'>
-        <BudgetList budgetsArray={budgetsArray} />
+        <BudgetList budgetsArray={budgetsArray} setBudgetArray={setBudgetArray} />
       </div>
     </div>
   );
