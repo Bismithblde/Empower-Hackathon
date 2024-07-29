@@ -9,7 +9,6 @@ import xmarker  from '../../src/assets/xmarker.png'
 
 export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
   const handleClick = () => {
-    
     const index = budgetArray.findIndex(b => b.name === budget.name);
   
     const newArray = [
@@ -18,7 +17,22 @@ export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
     ];
     
     setBudgetArray(newArray);
+  
+    const savedData = localStorage.getItem('budgets');
+    const parsedData = JSON.parse(savedData);
+  
+    const localStorageIndex = parsedData.findIndex(b => b.name === budget.name);
+    
+    if (localStorageIndex !== -1) {
+      const updatedLocalStorageData = [
+        ...parsedData.slice(0, localStorageIndex),
+        ...parsedData.slice(localStorageIndex + 1)
+      ];
+      
+      localStorage.setItem('budgets', JSON.stringify(updatedLocalStorageData));
+    }
   };
+
   return (
     <div className='budget-card'>
             <button className='x-button' onClick={handleClick}>
