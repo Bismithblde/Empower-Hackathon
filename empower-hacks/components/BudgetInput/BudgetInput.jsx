@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './BudgetInput.css'
 import { Button } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
+
+
 export default function BudgetInput( {addBudget, budgetArray}) {
   const [name, setName] = useState("");
   const [budgetValue, setBudgetValue] = useState(0)
@@ -10,7 +13,7 @@ export default function BudgetInput( {addBudget, budgetArray}) {
       alert("You added a budget with the same name as another one.")
       return;
     }
-    addBudget({name: name, id: budgetArray.length+1, budgetValue: budgetValue, expenses: [], totalExpense: 0})
+    addBudget({name: name, id: uuidv4(), budgetValue: budgetValue, expenses: [], totalExpense: 0})
     console.log("Submitted")
   }
   return (

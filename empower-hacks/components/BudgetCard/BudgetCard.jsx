@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import xmarker  from '../../src/assets/xmarker.png'
 
 
-
 export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
   const handleClick = () => {
     const index = budgetArray.findIndex(b => b.name === budget.name);
@@ -48,7 +47,7 @@ export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
         Current Spending: ${budget.totalExpense}
       </h3>
       <DoughnutChart percentage={(budget.totalExpense / budget.budgetValue) * 100} />
-      <Link to={`/budget/${budget.id}`}> View Details</Link >
+      <Link to={`/budget/${budget.id}`} className='pixelify-sans-normal view-details-link'> View Details</Link >
 
       
     </div>

@@ -26,3 +26,25 @@
 .x-button:active {
     background-color: #c5b698;
 }
+
+.view-details-link {
+    border: solid;
+    text-decoration: none;
+    padding: 15px;
+    background-color: #393E41;
+    color: #D3D0CB;
+    border-color: transparent;
+    border-radius: 15px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+ 
+}
+.view-details-link:hover {
+    background-color: #5f6264;
+    color: white;
+    box-shadow: 5px 10px #393E41;
+    transform: translateY(-10px);
+
+}

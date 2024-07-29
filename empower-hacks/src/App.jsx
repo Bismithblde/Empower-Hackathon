@@ -1,24 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import BudgetInput from '../components/BudgetInput/BudgetInput'
-import ExpensesInput from '../components/ExpensesInput/ExpensesInput'
-import BudgetList from '../components/BudgetList/BudgetList'
-import BudgetTracker from './BudgetTracker'
-import { Route, Routes } from 'react-router-dom'
-import BudgetCardOverview from './BudgetCardOverview'
+import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import BudgetTracker from './pages/BudgetTracker.jsx';
+import BudgetCardOverview from './pages/BudgetCardOverview/BudgetCardOverview.jsx';
+import { BudgetCardContext } from '../contexts/BudgetCardContext.jsx';
+
 function App() {
-  
+  const [budgetsArray, setBudgetArray] = useState([]);
+
   return (
-    <>
+    <BudgetCardContext.Provider value={{ budgetsArray, setBudgetArray }}>
       <Routes>
         <Route path='/budget' element={<BudgetTracker />} />
-        <Route path='/budget/:id' element={<BudgetCardOverview />}/>
+        <Route path='/budget/:id' element={<BudgetCardOverview />} />
       </Routes>
-    </>
-
-  )
+    </BudgetCardContext.Provider>
+  );
 }
 
-export default App
+export default App;

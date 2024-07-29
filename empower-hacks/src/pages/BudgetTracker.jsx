@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import BudgetInput from '../components/BudgetInput/BudgetInput';
-import ExpensesInput from '../components/ExpensesInput/ExpensesInput';
-import BudgetList from '../components/BudgetList/BudgetList';
-
+import '../App.css';
+import BudgetInput from '../../components/BudgetInput/BudgetInput';
+import ExpensesInput from '../../components/ExpensesInput/ExpensesInput';
+import BudgetList from '../../components/BudgetList/BudgetList';
+import { useContext } from 'react';
+import { BudgetCardContext } from '../../contexts/BudgetCardContext';
 function BudgetTracker() {
-  const [budgetsArray, setBudgetArray] = useState([]);
+  const { setBudgetArray, budgetsArray } = useContext(BudgetCardContext)
 
   // Initialize budgetsArray from localStorage on component mount
   useEffect(() => {
@@ -24,6 +25,7 @@ function BudgetTracker() {
       localStorage.setItem('budgets', JSON.stringify(budgetsArray));
     }
   }, [budgetsArray]);
+
 
   const addBudget = (budget) => {
     setBudgetArray([...budgetsArray, budget]);
