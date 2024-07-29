@@ -10,7 +10,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedExpenses = [...selectedBudget.expenses, { expenseName: expenseName, expenseValue: Number(expenseValue) }];
+    const updatedExpenses = [...selectedBudget.expenses, { expenseName: expenseName, expenseValue: Number(expenseValue), id: uuidv4() }];
     const updatedTotalExpense = selectedBudget.totalExpense + Number(expenseValue);
 
     if (updatedTotalExpense > selectedBudget.budgetValue) {
@@ -52,7 +52,7 @@ export default function ExpensesInput({ budgetsArray, setBudgetArray }) {
             <select className='expenses-dropdown pixelify-sans-normal' onChange={handleBudgetChange} value={selectedBudget.name}>
               <option value=''>Select a budget</option>
               {budgetsArray.map((budget, index) => (
-                <option key={ uuidv4()} value={budget.name}>{budget.name}</option>
+                <option key={budget.id} value={budget.name}>{budget.name}</option>
               ))}
             </select>
           </div>
