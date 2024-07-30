@@ -27,3 +27,13 @@
     transform: translateY(-20px);
     transition: opacity 500ms, transform 500ms;
   }
+  .search-input {
+    width: 97%;
+    height: 50px;
+    background-color: #E7E5DF;
+    border-radius: 15px;
+    padding-left: 20px;
+    font-size: 20px;
+    border: 2px dashed rgb(58, 0, 58);
+    margin-top: 20px;
+  }
