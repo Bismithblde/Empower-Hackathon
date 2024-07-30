@@ -1,0 +1,28 @@
+/* Global Styles */
+* {
+    margin: 0;
+}
+.pixelify-sans-normal {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .signika-negative-bold {
+    font-family: "Signika Negative", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+  .work-sans-bold {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+  .averia-gruesa-libre-regular {
+    font-family: "Averia Gruesa Libre", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }

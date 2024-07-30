@@ -1,0 +1,68 @@
+@font-face {
+    font-family: CustomFont;
+    src: url(../../assets/Zyzol.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.home-container {
+    height: 104.2vh;
+    background-color: #afabe4;
+    background-size: 5000px;
+    margin-top: -100px;
+}
+
+.home-text {
+    font-size: 200px;
+    color: white;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    font-family: 'CustomFont', sans-serif;
+
+}
+.welcome-text {
+    font-size: 40px;
+    color: white;
+    position: absolute;
+    left: 190px;
+    top: 325px;
+    font-family: 'CustomFont', sans-serif;
+}
+
+.info-container {
+    background-color: #eae8fcbd;
+    position: absolute;
+    top: 400px;
+    width: 40%;
+    height: 35%;
+    left: 115px;
+    font-family: 'CustomFont', sans-serif;
+}
+.wave-container {
+    width: 100%;
+    height: 50%;
+    background: url(../../assets/wave.svg);
+    
+    position: absolute;
+    bottom: 0px;
+}
+.contact-container {
+    position: absolute;
+    background-color: #eae8fcbd;
+    height: 50%;
+    width: 40%;
+    top: 200px;
+    left: 1000px;
+    font-family: 'CustomFont', sans-serif;
+    color: rgb(93, 78, 109);
+}
+
+.contact-container h1 {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.contact-container h2 {
+    margin-left: 60px;
+    
+}
