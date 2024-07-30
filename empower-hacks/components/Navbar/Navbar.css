@@ -1,0 +1,32 @@
+.navbar-container {
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+    
+
+}
+.navbar {
+    padding-right: 100px;
+    width: 30%;
+    
+
+}
+.nav-link {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+.nav-link:hover {
+    color: gray;
+}
+.nav-link:last-child {
+    margin-right: 0px;
+}
