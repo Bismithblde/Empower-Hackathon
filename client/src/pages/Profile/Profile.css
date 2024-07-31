@@ -1,0 +1,37 @@
+.profile-page-container {
+    background-color: #cec9ff;
+    padding-top: 10px; 
+    margin-top: -80px; 
+    position: relative; 
+    z-index: 0; 
+    min-height: 100.6vh; 
+
+  }
+
+  .profile-container {
+    background-color: white;
+    display: flex;
+    height: 60vh;
+    margin-top: 125px;
+    width: 30%;
+    border: transparent;
+    margin-left: 100px;
+    margin-top: 20vh;
+    border-radius: 10px;
+    border: solid;
+    border-width: 1px;
+    border-color: #3d3583;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .username-container {
+    margin-top: 30px;
+    width: 100%;
+    height: 65%;
+  }
+  .username-container h2 {
+    margin-left: 20px;
+    
+  }
