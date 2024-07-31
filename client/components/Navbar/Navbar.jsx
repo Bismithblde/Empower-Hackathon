@@ -9,6 +9,8 @@ export default function Navbar() {
         <nav className='navbar'>
             <Link to={"/"} className='nav-link'>Home</Link>
             <Link to={"/budget"} className='nav-link'>Budget Tracker</Link>
+            <Link to={"/login"} className='nav-link'>Login</Link>
+
         </nav>
         
     </div>

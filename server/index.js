@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 
+const userRouter = require('./routes/user')
+
+app.use("/api",userRouter)
+
+
 app.get("/api", (req, res) => {
     res.json({"Test": ["Test1"]})
 })

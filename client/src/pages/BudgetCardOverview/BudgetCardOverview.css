@@ -8,7 +8,7 @@
     height: 80vh;
     width: 30%;
     justify-content: space-around;
-    background-color: #e6cdeb;
+    background-color:   #cdd0eb;
     position: relative;
     margin-top: 150px;
     margin-left: 30px;
@@ -18,7 +18,7 @@
     min-height: 104.2vh;
     width: 100%;
     margin-top: -100px;
-    background-color: #afabe4;
+    background-color: #5a6e7a;
     display: flex;
     gap: 50px;
     
@@ -34,10 +34,13 @@
     margin-top: 150px;
     border: solid;
     display: flex;
-    justify-content: center;
     width: 500px;
     border-radius: 50px;
-    background-color: #e6cdeb;
+    background-color: #cdd0eb;
+    flex-direction: column;
+    align-items: center;
+    
+    
 
 }
 
