@@ -46,7 +46,7 @@ export default function Tiptap() {
 
 
 
-      <Box sx={{ p: 3, maxWidth: 1800, margin: "0 auto", backgroundColor: "white" }}>
+      <Box sx={{ p: 3, maxWidth: 1800, margin: "0 auto", backgroundColor: "white", minWidth: 1800}}>
         <Editor />
       </Box>
     </ThemeProvider>

@@ -1,5 +1,5 @@
 import { Lock, LockOpen, TextFields } from "@mui/icons-material";
-import { Box, Button, Stack, Typography, Input } from "@mui/material";
+import { Box, Button, Stack, Typography, Input, Select, MenuItem } from "@mui/material";
 import type { EditorOptions } from "@tiptap/core";
 import { useCallback, useRef, useState } from "react";
 import {
@@ -15,7 +15,7 @@ import EditorMenuControls from "./EditorMenuControls";
 import useExtensions from "./useExtensions";
 
 
-const exampleContent = "<h1>Hi!</h1>"
+const exampleContent = "<h1>Hi welcome to the blog editor! Make sure you save before publishing your blog or the state will not update!</h1>"
 function fileListToImageFiles(fileList: FileList): File[] {
   // You may want to use a package like attr-accept
   // (https://www.npmjs.com/package/attr-accept) to restrict to certain file
@@ -35,16 +35,14 @@ export default function Editor() {
   const [showMenuBar, setShowMenuBar] = useState(true);
   const [title, setTitle] = useState('')
   const [submittedContent, setSubmittedContent] = useState("");
-
+  const [type, setType] = useState("")
   const handleSubmit =  async () => {
-    console.log("Hi")
-    setSubmittedContent(
-      rteRef.current?.editor?.getHTML() ?? "",
-    )
+    console.log(type)
+
     const response = await fetch('/api/create-blog', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ title, text: submittedContent })
+      body: JSON.stringify({ title, text: submittedContent , type: type})
     })
     const data = await response.json();
     console.log(JSON.stringify(data))
@@ -207,19 +205,32 @@ export default function Editor() {
                   selected={!isEditable}
                   IconComponent={isEditable ? Lock : LockOpen}
                 />
-                <Input 
+                <Input fullWidth
                   placeholder="Enter Title:"
                   onChange={(e) => {setTitle(e.target.value)}}
                 />
-                
+                <Select fullWidth onChange={(e) => {setType(e.target.value)}} value={type}>
+                  <MenuItem value={"Scholarship"}>Scholarship</MenuItem>
+                  <MenuItem value={"Blog"}>Blog</MenuItem>
+                </Select>
+                <Button 
+                  variant="contained"
+                  size="small"
+                  onClick={(e) => {setSubmittedContent(
+                    rteRef.current?.editor?.getHTML() ?? "",
+                  )}}
+                >
+                  Save
+                </Button>
                 <Button 
                   variant="contained"
                   size="small"
                   onClick={handleSubmit}
                 >
-                  Save
+                  Publish
                 </Button>
               </Stack>
+              
             ),
           }}
         >

@@ -11,17 +11,21 @@ export default function Navbar() {
       <div className='navbar-container pixelify-sans-normal'>
         <a href="" className="logo">Placeholder Logo</a>
         <nav className='navbar'>
-            <Link to={"/"} className='nav-link'>Home</Link>
-            <Link to={"/budget"} className='nav-link'>Budget Tracker</Link>
 
+            
             {!user ? (
               <Link to={"/login"} className='nav-link'>Login</Link>
             ): (
+            <>
+              <Link to={"/"} className='nav-link'>Home</Link>
+              <Link to={"/budget"} className='nav-link'>Budget Tracker</Link>
               <Link to={"/profile"} className='nav-link'>
-        
-              <Avatar src="/broken-image.jpg" />
 
-            </Link>
+                <Avatar src="/broken-image.jpg" />
+
+              </Link>
+            </>
+
             )}
         </nav>
         

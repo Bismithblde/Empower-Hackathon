@@ -21,7 +21,7 @@ export default function CreateAccount() {
       await signup(username, password);
       // Assuming signup throws an error if it fails
       if (!isLoading) {
-        navigate('/profile'); // Navigate only if there are no errors
+        navigate('/'); // Navigate only if there are no errors
       }
     } catch (err) {
       // Handle signup error and set the error state

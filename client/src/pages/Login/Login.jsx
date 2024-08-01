@@ -22,7 +22,7 @@ export default function Login() {
       await login(username, password);
     
       if (!isLoading) {
-        navigate('/profile'); 
+        navigate('/'); 
       }
     } catch (err) {
       setError(err.message || 'Signup failed');

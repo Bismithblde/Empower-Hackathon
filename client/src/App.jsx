@@ -10,6 +10,8 @@ import CreateAccount from './pages/CreateAccount/CreateAccount.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import Profile from './pages/Profile/Profile.jsx'
 import BlogCreator from './pages/BlogCreator/BlogCreator.jsx'
+import BlogHub from './pages/BlogHub/BlogHub.jsx'
+import Blog from './pages/Blog/Blog.jsx';
 function App() {
   const [budgetsArray, setBudgetArray] = useState([]);
 
@@ -25,7 +27,13 @@ function App() {
           <Route path='/login' element={<Login />}/>
           <Route path='/create-account' element={<CreateAccount/>}/>
           <Route path='/profile' element={<Profile />}/>
-          <Route path='blog-creator' element={<BlogCreator />}/>
+          <Route path='/blog-creator' element={<BlogCreator />}/>
+          <Route path='/blog-hub' element={<BlogHub />}/>
+          <Route path='/blog-hub/blogs/:id' element={<Blog />}/>
+          <Route path='/blog-hub/scholarships/:id' element={<Blog />}/>
+
+
+
         </Routes>
       </BudgetCardContext.Provider>
     </BrowserRouter>

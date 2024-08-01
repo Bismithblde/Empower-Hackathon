@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import Navbar from '../../../components/Navbar/Navbar.jsx'
+import useAuthContext from '../../hooks/useAuthContext.jsx'
+import { useNavigate } from 'react-router-dom'
 export default function Home() {
+  const { user } = useAuthContext();
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!user) {
+      navigate("/login")
+    }
+  }, [])
   return (
     <>  
+        
         <div className='home-container'>
         <div className='wave-container'></div>
             <h1 className='home-text '>home</h1>
