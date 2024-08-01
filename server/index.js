@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const app = express()
 const userRouter = require('./routes/user')
+const blogcreatorRouter = require('./routes/blogcreator')
 app.use(cors());
 app.use(express.json())
 
@@ -13,7 +14,7 @@ app.use(express.json())
 const PORT = process.env.PORT
 
 app.use("/api", userRouter)
-
+app.use("/api", blogcreatorRouter)
 app.get("/api", (req, res) => {
     res.json({"Test": ["Test1"]})
 })

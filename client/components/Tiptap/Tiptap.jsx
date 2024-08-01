@@ -8,8 +8,13 @@ import FontFamily from '@tiptap/extension-font-family';
 import FontSize from './Fontsize'; 
 import TextAlign from '@tiptap/extension-text-align';
 import Link from '@tiptap/extension-link'; 
+import { Input } from '@mui/material';
+import { useState } from 'react';
+import ImageResize from 'tiptap-extension-resize-image';
 
 const Tiptap = () => {
+  const [title, setTitle] = useState('')
+  
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -17,21 +22,34 @@ const Tiptap = () => {
       Image,
       TextStyle,
       FontSize,
+      ImageResize,
       FontFamily.configure({
         types: ['textStyle'],
       }),
       TextAlign.configure({
         types: ['paragraph'],
       }),
-      Link.configure({
-      }),
+      Link.configure({}),
     ],
-    content: '<p></p>', 
+    content: '<p></p>',
   });
 
   if (!editor) {
     return null;
   }
+
+  const handlePublish = async (e) => {
+    e.preventDefault();
+    console.log("Published?")
+    const text = editor.getHTML()
+    const response = await fetch('/api/create-blog', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ title, text })
+    })  
+    setTitle('')
+
+  };
 
   const handleAlignment = (alignment) => {
     editor.chain().focus().setTextAlign(alignment).run();
@@ -87,11 +105,27 @@ const Tiptap = () => {
           <option value="Georgia">Georgia</option>
           <option value="Times New Roman">Times New Roman</option>
           <option value="Verdana">Verdana</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Garamond">Garamond</option>
+          <option value="Palatino">Palatino</option>
+          <option value="Trebuchet MS">Trebuchet MS</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Lucida Sans">Lucida Sans</option>
+          <option value="Merriweather">Merriweather</option>
+          <option value="Lora">Lora</option>
+          <option value="Roboto">Roboto</option>
+
+
         </select>
         <button onClick={() => handleAlignment('left')}>Align Left</button>
         <button onClick={() => handleAlignment('center')}>Align Center</button>
         <button onClick={() => handleAlignment('right')}>Align Right</button>
         <button onClick={() => handleAlignment('justify')}>Justify</button>
+        <form onSubmit={handlePublish} style={{display: 'flex', gap: '10px'}}>
+          <button type='submit'>Publish</button>
+          <Input placeholder='Enter Title' onChange={(e) => {setTitle(e.target.value)}} value={title}></Input>
+        </form>
+
       </div>
       <div className="tiptap-container">
         <EditorContent editor={editor} />
