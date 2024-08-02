@@ -27,6 +27,8 @@ function fileListToImageFiles(fileList: FileList): File[] {
 }
 
 export default function Editor() {
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
   const extensions = useExtensions({
     placeholder: "Add your own content here...",
   });
@@ -39,7 +41,7 @@ export default function Editor() {
   const handleSubmit =  async () => {
     console.log(type)
 
-    const response = await fetch('/api/create-blog', {
+    const response = await fetch(`${apiUrl}/api/create-blog`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ title, text: submittedContent , type: type})

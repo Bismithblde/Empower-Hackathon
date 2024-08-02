@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import useAuthContext from '../src/hooks/useAuthContext';
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 function achievementsReducer(state, action) {
   switch (action.type) {
@@ -36,7 +37,7 @@ export function AchievementsProvider({ children }) {
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const response = await fetch('/api/get-achievements', {
+        const response = await fetch(`${apiUrl}/api/get-achievements`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: user.username })

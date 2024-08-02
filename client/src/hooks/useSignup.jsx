@@ -4,6 +4,8 @@ import useAuthContext from './useAuthContext'
 const usernameValidation = /^[a-zA-Z0-9_]{5,}$/;
 
 export const useSignup = () => {
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const { dispatch } = useAuthContext()
@@ -17,7 +19,7 @@ export const useSignup = () => {
       throw Error("Username can only contain letters, numbers, and underscores. Username must be at least 5 characters long.")
       return;
     }
-    const response = await fetch('/api/signup', {
+    const response = await fetch(`${apiUrl}/api/signup`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ username, password })
