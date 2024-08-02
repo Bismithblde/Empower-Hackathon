@@ -19,6 +19,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true
     }
 });
 
@@ -39,7 +43,7 @@ userSchema.statics.signup = async function (username, password) {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    const user = await this.create({ username, password: hash });
+    const user = await this.create({ username, password: hash, isAdmin: false });
     return user;
 }
 
@@ -64,6 +68,13 @@ userSchema.statics.login = async function (username, password) {
 
     return user;
 }
-
+userSchema.statics.checkAdmin = async function(username) {
+    const user = await this.findOne({ username, isAdmin: true });
+    if (!user) {
+      throw new Error("User not found or not an admin");
+    }
+    return true;
+  };
+  
 const User = mongoose.model('User', userSchema);
 module.exports = User;

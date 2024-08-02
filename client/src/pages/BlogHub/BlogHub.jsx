@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Container, Paper, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
 import './BlogHub.css';
+import useAuthContext from '../../hooks/useAuthContext';
 
 export default function BlogHub() {
   const [scholarships, setScholarships] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(null);
+  const { user } = useAuthContext();
 
   const getBlogs = async (type) => {
     try {
@@ -30,8 +33,26 @@ export default function BlogHub() {
       setBlogs(fetchedBlogs);
     };
 
+    const fetchAdmin = async () => {
+      if (user && user.username) {
+        try {
+          const response = await fetch('/api/check-admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: user.username }),
+          });
+          const data = await response.json();
+          setIsAdmin(data.isAdmin);
+        } catch (error) {
+          console.log(error);
+          setIsAdmin(false);
+        }
+      }
+    };
+
     fetchBlogs();
-  }, []);
+    fetchAdmin();
+  }, [user]);
 
   return (
     <div className='bloghub-page-container'>
@@ -61,8 +82,24 @@ export default function BlogHub() {
               ))}
             </List>
           </Paper>
+
         </div>
       </Container>
+      {isAdmin && (
+            <div className="create-blog-container">
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="/blog-creator"
+                key="blog-creator-link"
+                className="blog-creator-button"
+                fullWidth
+              >
+                Blog Creator
+              </Button>
+            </div>
+          )}
     </div>
   );
 }

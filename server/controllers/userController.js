@@ -30,5 +30,13 @@ const signupUser = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
-
-module.exports = { loginUser, signupUser };
+const checkAdmin = async (req, res) => {
+    const { username } = req.body;
+    try {
+        const isAdmin = await User.checkAdmin(username);
+        res.status(200).json({isAdmin})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+module.exports = { loginUser, signupUser, checkAdmin };
