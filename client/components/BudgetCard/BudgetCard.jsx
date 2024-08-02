@@ -35,7 +35,7 @@ export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
   return (
     <div className='budget-card'>
             <button className='x-button' onClick={handleClick}>
-      <img src="../../src/assets/xmarker.png" width={50} style={{marginRight: "4px", marginTop: "4px"}}/>
+      <img src="../../public/xmarker.png" width={50} style={{marginRight: "4px", marginTop: "4px"}}/>
       </button> 
       <h1 style={{ fontSize: 50 }} className='pixelify-sans-normal'>
         Budget Name: {budget.name}  
