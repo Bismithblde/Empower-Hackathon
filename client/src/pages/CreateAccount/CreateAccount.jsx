@@ -14,17 +14,17 @@ export default function CreateAccount() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Reset the error state before attempting signup
+    
     setError('');
 
     try {
       await signup(username, password);
-      // Assuming signup throws an error if it fails
+      
       if (!isLoading) {
-        navigate('/'); // Navigate only if there are no errors
+        navigate('/'); 
       }
     } catch (err) {
-      // Handle signup error and set the error state
+     
       setError(err.message || 'Signup failed');
       console.log('Signup failed:', err);
     }

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BudgetInput.css'
 import { Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-
+import { useAchievements } from '../../contexts/AchievementsContext';
 
 export default function BudgetInput( {addBudget, budgetArray}) {
   const [name, setName] = useState("");
-  const [budgetValue, setBudgetValue] = useState(0)
+  const [budgetValue, setBudgetValue] = useState("")
+  const { state, dispatch } = useAchievements();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (budgetArray.find(b => b.name === name)) {
@@ -14,17 +16,35 @@ export default function BudgetInput( {addBudget, budgetArray}) {
       return;
     }
     addBudget({name: name, id: uuidv4(), budgetValue: budgetValue, expenses: [], totalExpense: 0})
+    setName("")
+    setBudgetValue("")
     console.log("Submitted")
+
+    const achievementExists = state.achievements.some(ach => ach.name === 'First Budget Created');
+    if (!achievementExists) {
+      dispatch({
+        type: 'ADD_ACHIEVEMENT',
+        payload: {
+          name: 'First Budget Created',
+          description: 'Awarded for creating your first budget.',
+          image: "/ribbon1.PNG",
+          animationTriggered: false,
+          dateEarned: new Date().toISOString()
+        }
+      });
+    }
   }
+
+
   return (
     
     <div className='budget-input-container'>
         <form className='budget-input-form' onSubmit={handleSubmit}>
             <label className='title-label pixelify-sans-normal' >Create Budget</label>
             <label className='input-label pixelify-sans-normal'>Budget Name</label>
-            <input type='text' placeholder='e.g. Groceries' className='budget-input pixelify-sans-normal' onChange={(e) => setName(e.target.value)}></input>
+            <input type='text' placeholder='e.g. Groceries' className='budget-input pixelify-sans-normal' onChange={(e) => setName(e.target.value)} value={name}></input>
             <label className='input-label pixelify-sans-normal'>Amount</label>
-            <input type='number' placeholder='$100' className='budget-input pixelify-sans-normal' onChange={(e) => setBudgetValue(e.target.value)}></input>
+            <input type='number' placeholder='$100' className='budget-input pixelify-sans-normal' onChange={(e) => setBudgetValue(e.target.value)} value={budgetValue}></input>
             <button className='budget-input-button pixelify-sans-normal' type='submit'>Submit</button>
             
         </form> 

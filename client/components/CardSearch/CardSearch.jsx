@@ -5,7 +5,7 @@ const SearchBar = ({ budgetsArray, onFilter }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const fuse = new Fuse(budgetsArray, {
-    keys: ['name'], // Adjust this to match the key(s) you want to search by
+    keys: ['name'],
     includeScore: true,
   });
 

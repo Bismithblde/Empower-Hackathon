@@ -31,7 +31,7 @@ function App() {
           <Route path='/blog-hub' element={<BlogHub />}/>
           <Route path='/blog-hub/blogs/:id' element={<Blog />}/>
           <Route path='/blog-hub/scholarships/:id' element={<Blog />}/>
-
+        
 
 
         </Routes>

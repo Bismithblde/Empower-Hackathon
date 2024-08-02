@@ -7,18 +7,15 @@ import Fuse from 'fuse.js';
 const BudgetList = ({ budgetsArray, setBudgetArray }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Initialize Fuse.js
   const fuse = new Fuse(budgetsArray, {
-    keys: ['name'], // Adjust this to match the key(s) you want to search by
+    keys: ['name'], 
     includeScore: true,
   });
 
-  // Filter budgets based on search term
   const filteredBudgets = searchTerm
     ? fuse.search(searchTerm).map(result => result.item)
     : budgetsArray;
 
-  // Handle search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
