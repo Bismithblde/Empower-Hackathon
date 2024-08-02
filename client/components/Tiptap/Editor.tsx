@@ -39,7 +39,6 @@ export default function Editor() {
   const [submittedContent, setSubmittedContent] = useState("");
   const [type, setType] = useState("")
   const handleSubmit =  async () => {
-    console.log(type)
 
     const response = await fetch(`${apiUrl}/api/create-blog`, {
       method: 'POST',

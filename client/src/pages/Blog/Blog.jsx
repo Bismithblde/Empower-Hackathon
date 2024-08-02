@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import './Blog.css';
 import { useAchievements } from '../../../contexts/AchievementsContext';
-
+import Reader from '../../../components/Tiptap/Reader';
 export default function Blog() {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [blogContent, setBlogContent] = useState('');
@@ -56,11 +56,12 @@ export default function Blog() {
         achievementAddedRef.current = true; // Mark the achievement as added
       }
     }
+    console.log(blogContent)
   }, [blogTitle, state.achievements, dispatch]);
 
   return (
     <div className='blog-container'>
-       <div dangerouslySetInnerHTML={{ __html: blogContent }} className='blog-content' />
+       <div className='blog-content'> <Reader content={blogContent}/></div>
     </div>
   );
 }
