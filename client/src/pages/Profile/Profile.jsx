@@ -13,7 +13,7 @@ export default function Profile() {
   useEffect(() => {
     const getAchievements = async () => {
       const username = user.username;
-      const response = await fetch('${apiUrl}/api/get-achievements', {
+      const response = await fetch(`${apiUrl}/api/get-achievements`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username })

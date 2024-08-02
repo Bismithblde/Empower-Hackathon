@@ -3,7 +3,7 @@ import DoughnutChart from '../DoughnutChart/DoughnutChart';
 import './BudgetCard.css';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import xmarker  from '../../src/assets/xmarker.png'
+import xmarker  from '../../public/xmarker.png'
 
 
 export default function BudgetCard({ budget, setBudgetArray, budgetArray}) {
