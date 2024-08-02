@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import useAuthContext from '../src/hooks/useAuthContext';
-const apiUrl = process.env.REACT_APP_API_BASE_URL;
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 function achievementsReducer(state, action) {
   switch (action.type) {

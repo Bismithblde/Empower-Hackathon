@@ -5,6 +5,7 @@ import useLogout from '../../hooks/useLogout';
 import useAuthContext from '../../hooks/useAuthContext';
 
 export default function Profile() {
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const { logout } = useLogout();
   const { user } = useAuthContext();
   const [achievements, setAchievements] = useState([]);
@@ -12,7 +13,7 @@ export default function Profile() {
   useEffect(() => {
     const getAchievements = async () => {
       const username = user.username;
-      const response = await fetch('/api/get-achievements', {
+      const response = await fetch('${apiUrl}/api/get-achievements', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username })

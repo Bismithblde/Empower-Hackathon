@@ -4,6 +4,7 @@ import './Blog.css';
 import { useAchievements } from '../../../contexts/AchievementsContext';
 
 export default function Blog() {
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [blogContent, setBlogContent] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function Blog() {
 
   const getBlog = async (id) => {
     try {
-      const response = await fetch('/api/get-blog', {
+      const response = await fetch(`${apiUrl}/api/get-blog`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ _id: id }),

@@ -5,6 +5,7 @@ import './BlogHub.css';
 import useAuthContext from '../../hooks/useAuthContext';
 
 export default function BlogHub() {
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [scholarships, setScholarships] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isAdmin, setIsAdmin] = useState(null);
@@ -12,7 +13,7 @@ export default function BlogHub() {
 
   const getBlogs = async (type) => {
     try {
-      const response = await fetch('/api/get-blogs', {
+      const response = await fetch(`${apiUrl}/api/get-blogs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type }),
@@ -36,7 +37,7 @@ export default function BlogHub() {
     const fetchAdmin = async () => {
       if (user && user.username) {
         try {
-          const response = await fetch('/api/check-admin', {
+          const response = await fetch(`${apiUrl}/api/check-admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user.username }),

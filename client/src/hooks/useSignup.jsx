@@ -4,7 +4,7 @@ import useAuthContext from './useAuthContext'
 const usernameValidation = /^[a-zA-Z0-9_]{5,}$/;
 
 export const useSignup = () => {
-  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)

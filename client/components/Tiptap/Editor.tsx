@@ -27,7 +27,7 @@ function fileListToImageFiles(fileList: FileList): File[] {
 }
 
 export default function Editor() {
-  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const extensions = useExtensions({
     placeholder: "Add your own content here...",
