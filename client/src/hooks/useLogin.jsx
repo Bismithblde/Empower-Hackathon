@@ -4,7 +4,6 @@ import useAuthContext from './useAuthContext'
 
 export const useLogin = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  console.log(apiUrl)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const { dispatch } = useAuthContext()
