@@ -1,11 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node ./api/index.js",
+    "dev": "nodemon ./api/index.js"
   },
   "keywords": [],
   "author": "",
