@@ -78,7 +78,7 @@ export default function Navbar() {
   return (
     <div className='header'>
       <div className='navbar-container'>
-        <a href="#" className="logo pixelify-sans-normal">Placeholder Logo</a>
+        <img src="/logo.png" className="logo pixelify-sans-normal" width={100} style={{borderRadius: 20, marginRight: "10px"}}/>
         <nav className='navbar'>
           {!user ? (
             <Link to="/login" className='nav-link pixelify-sans-normal'>Login</Link>

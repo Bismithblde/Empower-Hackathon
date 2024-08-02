@@ -3,6 +3,7 @@ import './Home.css'
 import Navbar from '../../../components/Navbar/Navbar.jsx'
 import useAuthContext from '../../hooks/useAuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
+
 export default function Home() {
   const { user } = useAuthContext();
   const navigate = useNavigate()
@@ -15,6 +16,7 @@ export default function Home() {
     <>  
         
         <div className='home-container'>
+          <img src='/image.png' style={{position: "absolute", left: "35%", top: "8%", borderRadius: "100px"}} width={500}></img>
         <div className='wave-container'></div>
             <h1 className='home-text '>home</h1>
             <h2 className='welcome-text'> Welcome to Finance Foward</h2>

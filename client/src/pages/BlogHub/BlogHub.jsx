@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import { Container, Paper, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
 import './BlogHub.css';
 import useAuthContext from '../../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function BlogHub() {
+  const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [scholarships, setScholarships] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isAdmin, setIsAdmin] = useState(null);
   const { user } = useAuthContext();
-
+  
   const getBlogs = async (type) => {
     try {
       const response = await fetch(`${apiUrl}/api/get-blogs`, {
@@ -27,6 +29,9 @@ export default function BlogHub() {
   };
 
   useEffect(() => {
+    if (!user) {
+      navigate("/login")
+    }
     const fetchBlogs = async () => {
       const fetchedScholarships = await getBlogs('Scholarship');
       const fetchedBlogs = await getBlogs('Blog');

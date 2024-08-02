@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import BudgetInput from '../../components/BudgetInput/BudgetInput';
 import ExpensesInput from '../../components/ExpensesInput/ExpensesInput';
 import BudgetList from '../../components/BudgetList/BudgetList';
 import { useContext } from 'react';
 import { BudgetCardContext } from '../../contexts/BudgetCardContext';
-function BudgetTracker() {
-  const { setBudgetArray, budgetsArray } = useContext(BudgetCardContext)
+import useAuthContext from '../../src/hooks/useAuthContext'; 
 
-  // Initialize budgetsArray from localStorage on component mount
+function BudgetTracker() {
+  const { setBudgetArray, budgetsArray } = useContext(BudgetCardContext);
+  const { user } = useAuthContext(); 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return; 
+    }
+
     const savedBudgets = localStorage.getItem('budgets');
     if (savedBudgets) {
       const parsedBudgets = JSON.parse(savedBudgets);
@@ -17,21 +26,17 @@ function BudgetTracker() {
         setBudgetArray(parsedBudgets);
       }
     }
-  }, []);
+  }, [user, navigate]); 
 
-  // Save budgetsArray to localStorage whenever it changes
   useEffect(() => {
     if (budgetsArray.length > 0) {
       localStorage.setItem('budgets', JSON.stringify(budgetsArray));
     }
   }, [budgetsArray]);
 
-
   const addBudget = (budget) => {
     setBudgetArray([...budgetsArray, budget]);
   };
-
-
 
   return (
     <div className='main-container'>
@@ -39,7 +44,7 @@ function BudgetTracker() {
         <h1>Budget Tracker</h1>
       </div>
       <div className='forms-container'>
-        <BudgetInput addBudget={addBudget} budgetArray={budgetsArray}/>
+        <BudgetInput addBudget={addBudget} budgetArray={budgetsArray} />
         <ExpensesInput budgetsArray={budgetsArray} setBudgetArray={setBudgetArray} />
       </div>
       <div className='budgetList-container'>
