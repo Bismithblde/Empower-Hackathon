@@ -4,16 +4,17 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvidor } from '../contexts/AuthContext.jsx'
-import { AchievementsProvider } from '../contexts/AchievementsContext.jsx'
+import { AchievementProvider } from '../contexts/AchievementsContext.jsx'
+import { AnimationProvider } from '../contexts/AnimationContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    
+  <AnimationProvider>
     <AuthContextProvidor>
-      <AchievementsProvider>
+      <AchievementProvider>
           <App />
-      </AchievementsProvider>
+      </AchievementProvider>
     </AuthContextProvidor>
-    
+  </AnimationProvider >
 
   </React.StrictMode>,
 )

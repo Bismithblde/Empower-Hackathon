@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import './Blog.css';
 import { useAchievements } from '../../../contexts/AchievementsContext';
 import Reader from '../../../components/Tiptap/Reader';
+
 export default function Blog() {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [blogContent, setBlogContent] = useState('');
   const [blogTitle, setBlogTitle] = useState('');
   const { id } = useParams();
-  const { state, dispatch } = useAchievements();
+  const { achievements, addAchievement } = useAchievements();
   const achievementAddedRef = useRef(false);
 
   const getBlog = async (id) => {
@@ -39,29 +40,28 @@ export default function Blog() {
   }, [id]);
 
   useEffect(() => {
-    if (!achievementAddedRef.current) {
-      const achievementExists = state.achievements.some(ach => ach.name === 'First Foward Blog Visited!');
+    if (achievements.length > 0 && !achievementAddedRef.current) {
+      const timer = setTimeout(() => {
+        const newAchievement = {
+          name: 'First Blog Visited',
+          description: 'Awarded for visiting your first blog.',
+          image: "/ribbon1.PNG",
+          animationTriggered: false,
+          dateEarned: new Date().toISOString(),
+        };
+        addAchievement(newAchievement);
+        achievementAddedRef.current = true;
+      }, 1000);
 
-      if (!achievementExists) {
-        dispatch({
-          type: 'ADD_ACHIEVEMENT',
-          payload: {
-            name: 'First Foward Blog Visited!',
-            description: 'Awarded for visiting your first blog on foward hub.',
-            image: "/ribbon1.PNG",
-            animationTriggered: false,
-            dateEarned: new Date().toISOString()
-          }
-        });
-        achievementAddedRef.current = true; // Mark the achievement as added
-      }
+      return () => clearTimeout(timer); // cleanup on unmount or when blogTitle changes
     }
-    console.log(blogContent)
-  }, [blogTitle, state.achievements, dispatch]);
+  }, [achievements, blogTitle, addAchievement]);
 
   return (
     <div className='blog-container'>
-       <div className='blog-content'> <Reader content={blogContent}/></div>
+      <div className='blog-content'>
+        <Reader content={blogContent} />
+      </div>
     </div>
   );
 }

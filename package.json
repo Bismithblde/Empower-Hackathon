@@ -3,6 +3,7 @@
     "@types/node": "^22.0.0"
   },
   "dependencies": {
-    "@tiptap/extension-text-align": "^2.5.8"
+    "@tiptap/extension-text-align": "^2.5.8",
+    "axios": "^1.7.3"
   }
 }

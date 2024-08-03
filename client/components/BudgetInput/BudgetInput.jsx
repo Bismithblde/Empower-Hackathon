@@ -3,12 +3,13 @@ import './BudgetInput.css'
 import { Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { useAchievements } from '../../contexts/AchievementsContext';
+import { useAnimationContext } from '../../contexts/AnimationContext';
 
 export default function BudgetInput( {addBudget, budgetArray}) {
   const [name, setName] = useState("");
   const [budgetValue, setBudgetValue] = useState("")
-  const { state, dispatch } = useAchievements();
-
+  const { addAchievement } = useAchievements();
+  const { triggerAnimation } = useAnimationContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (budgetArray.find(b => b.name === name)) {
@@ -20,20 +21,17 @@ export default function BudgetInput( {addBudget, budgetArray}) {
     setBudgetValue("")
     console.log("Submitted")
 
-    const achievementExists = state.achievements.some(ach => ach.name === 'First Budget Created');
-    if (!achievementExists) {
-      dispatch({
-        type: 'ADD_ACHIEVEMENT',
-        payload: {
-          name: 'First Budget Created',
-          description: 'Awarded for creating your first budget.',
-          image: "/ribbon1.PNG",
-          animationTriggered: false,
-          dateEarned: new Date().toISOString()
-        }
-      });
+    const newAchievement = {
+      name: 'First Budget Created',
+      description: 'Awarded for creating your first budget.',
+      image: "/ribbon1.PNG",
+      animationTriggered: false,
+      dateEarned: new Date().toISOString()
     }
+    addAchievement(newAchievement);
+
   }
+  
 
 
   return (

@@ -1,70 +1,71 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import useAuthContext from '../src/hooks/useAuthContext';
-const apiUrl = import.meta.env.VITE_API_BASE_URL;
+import axios from 'axios';
+import { useAnimationContext } from './AnimationContext';
 
-function achievementsReducer(state, action) {
+const AchievementContext = createContext();
+
+const achievementReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_ACHIEVEMENT':
-      return {
-        ...state,
-        achievements: [...state.achievements, action.payload]
-      };
-    case 'TRIGGER_ANIMATION':
-      return {
-        ...state,
-        achievements: state.achievements.map(achievement => 
-          achievement.name === action.payload.name
-            ? { ...achievement, animationTriggered: true }
-            : achievement
-        )
-      };
     case 'SET_ACHIEVEMENTS':
-      return {
-        ...state,
-        achievements: action.payload
-      };
+      return { ...state, achievements: action.payload };
+    case 'ADD_ACHIEVEMENT':
+      if (state.achievements.some(ach => ach.name === action.payload.name)) {
+        return state; 
+      }
+      return { ...state, achievements: [...state.achievements, action.payload] };
     default:
       return state;
   }
-}
+};
 
-const AchievementsContext = createContext();
+export const useAchievements = () => {
+  return useContext(AchievementContext);
+};
 
-export function AchievementsProvider({ children }) {
+const initialState = {
+  achievements: []
+};
+
+export const AchievementProvider = ({ children }) => {
+  const { triggerAnimation } = useAnimationContext();
+  const [state, dispatch] = useReducer(achievementReducer, initialState);
   const { user } = useAuthContext();
-  const [state, dispatch] = useReducer(achievementsReducer, { achievements: [] });
+  const username = user ? user.username : null;
 
   useEffect(() => {
-    const fetchAchievements = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/api/get-achievements`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: user.username })
+    if (username) {
+      axios.post('/api/get-achievements', { username })
+        .then(response => {
+          dispatch({ type: 'SET_ACHIEVEMENTS', payload: response.data.response.achievement });
+        })
+        .catch(error => {
+          console.error("Error fetching achievements", error);
         });
-        if (!response.ok) {
-          throw new Error('Failed to fetch achievements');
-        }
-        const data = await response.json();
-        dispatch({ type: 'SET_ACHIEVEMENTS', payload: data.response.achievement });
-      } catch (error) {
-        console.error("Error fetching achievements:", error);
-      }
-      
-    };
-
-    if (user) {
-      fetchAchievements();
     }
-  }, [user]);
-  console.log(state)
-  return (
-    <AchievementsContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AchievementsContext.Provider>
-  );
-}
+  }, [username]);
 
-export function useAchievements() {
-  return useContext(AchievementsContext);
-}
+  const addAchievement = (achievement) => {
+    if (state.achievements.some(ach => ach.name === achievement.name)) {
+      return;
+    }
+
+    const newAchievement = triggerAnimation(achievement);
+    const newAchievements = [...state.achievements, newAchievement];
+
+    dispatch({ type: 'ADD_ACHIEVEMENT', payload: newAchievement });
+
+    if (username) {
+      axios.post('/api/update-achievement', { username, achievements: newAchievements })
+        .catch(error => {
+          console.error("Error updating achievements", error);
+        });
+    }
+  };
+
+  return (
+    <AchievementContext.Provider value={{ ...state, addAchievement }}>
+      {children}
+    </AchievementContext.Provider>
+  );
+};
